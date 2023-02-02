@@ -1,6 +1,7 @@
-from termcolor import colored as c
+from termcolor import colored, cprint
 from os import name, system
-#from time import sleep
+from time import sleep
+import sys
 
 
 def clear():
@@ -11,60 +12,68 @@ def clear():
 
 def title_style(title):
     clear()
-    print(c('=' * 25, 'yellow'))
-    print(c(title, 'magenta'))
-    print(c('=' * 25 + "\n", 'yellow'))
+    cprint('=' * 25, 'yellow')
+    cprint(title, 'magenta')
+    cprint('=' * 25 + "\n", 'yellow')
 
 
 def options(number, actions):
 	for i in range(0, len(number)):
-		print(c(f"[{number[i]}] ", 'magenta') + c(f"{actions[i]}", 'yellow'))
+		print(colored(f"{number[i]} ", 'magenta') + colored(f"{actions[i]}", 'yellow'))
 
 
 def menu_internal():
-	numbers = ['1', '2']
+	numbers = ['[1]', '[2]']
 	actions = ['ɴᴏᴠᴀ ᴏᴘᴇʀᴀᴄᴀᴏ', 'sᴀɪʀ']
 	options(numbers, actions)
-	match input(c( '\n\nᴅɪɢɪᴛᴇ ᴀǫᴜɪ: ', 'blue' )):
+	match input(colored( '\n\nᴅɪɢɪᴛᴇ ᴀǫᴜɪ: ', 'blue' )):
 		case '1':
 			menu_operations()
 		case '2':
 			clear()
-			system('exit')
+			sys.exit()
 
 def menu_operations():
 	title_style('        ᴏᴘᴇʀᴀᴄᴏᴇs')
-	numbers = [ '1', '2', '3', '4', '5']
+	numbers = [ '[1]', '[2]', '[3]', '[4]', '\n[5]']
 	actions = [ 'ᴀᴅɪᴄᴀᴏ', 'sᴜʙᴛʀᴀᴄᴀᴏ', 'ᴍᴜʟᴛɪᴘʟɪᴄᴀᴄᴀᴏ', 'ᴅɪᴠɪsᴀᴏ' , 'ᴠᴏʟᴛᴀʀ' ]
 	options(numbers, actions)
 	operations()
 
 
 def operations():
-    type = input(c( '\n\nᴅɪɢɪᴛᴇ ᴀǫᴜɪ: ', 'blue' ))
+    type = input(colored( '\n\nᴅɪɢɪᴛᴇ ᴀǫᴜɪ: ', 'blue' ))
     if type == '5':
-    	menu_main()
+        menu_main()
     title_style('        ᴏᴘᴇʀᴀᴄᴏᴇs')
-    n1 = int(input(c('1° valor: ', 'yellow')))
-    n2 = int(input(c('2° valor: ', 'yellow')))
     match type:
         case '1':
+            n1 = int(input(colored('1° valor: ', 'yellow')))
+            n2 = int(input(colored('2° valor: ', 'yellow')))
             a = n1 + n2
             b = '+'
         case '2':
+            n1 = int(input(colored('1° valor: ', 'yellow')))
+            n2 = int(input(colored('2° valor: ', 'yellow')))
             a = n1 - n2
             b = '-'
         case '3':
+            n1 = int(input(colored('1° valor: ', 'yellow')))
+            n2 = int(input(colored('2° valor: ', 'yellow')))
             a = n1 * n2
             b = '*'
         case '4':
+            n1 = int(input(colored('1° valor: ', 'yellow')))
+            n2 = int(input(colored('2° valor: ', 'yellow')))
             a = n1 / n2
             b = '/'
+        case '5':
+            menu_operations()
         case _:
             clear()
             print('ᴏᴘᴄᴀᴏ ɪɴᴠᴀʟɪᴅᴀ')
-            sleep(0.55)
-            operations()
+            sleep(0.90)
+            menu_operations()
     title_style('        ᴏᴘᴇʀᴀᴄᴏᴇs')
     print(f"{n1} {b} {n2} = {a}\n")
     menu_internal()
@@ -73,16 +82,21 @@ def operations():
 
 def menu_main():
     title_style('          ᴍᴇɴᴜ')
-    numbers = [ '1', '2' ]
-    actions = [ 'ᴏᴘᴇʀᴀᴄᴏᴇs', 'sᴀɪʀ' ]
+    numbers = [ '[1]', '[2]', '\n[3]' ]
+    actions = [ 'ᴏᴘᴇʀᴀᴄᴏᴇs', 'ᴄʀᴇᴅɪᴛᴏs', 'sᴀɪʀ' ]
     options(numbers, actions)
-    text = c( '\n\nᴅɪɢɪᴛᴇ ᴀǫᴜɪ: ', 'blue' )
+    text = colored( '\n\nᴅɪɢɪᴛᴇ ᴀǫᴜɪ: ', 'blue' )
     match input(text):
         case '1':
             menu_operations()
         case '2':
             clear()
-            system('exit')
+            print('sᴇʀᴠɪᴄᴏ ɪɴᴅɪsᴘᴏɴɪᴠᴇʟ !')
+            sleep(0.90)
+            menu_main()
+        case '3':
+            clear()
+            sys.exit()
     
 
 
@@ -91,5 +105,3 @@ def menu_main():
 
 # started
 menu_main()
-
-
