@@ -5,10 +5,8 @@ import sys
 
 
 def clear():
-	if name == 'nt':
-		system('cls')
-	else:
-		system('clear')
+	system('cls') if name == 'nt' else system('clear')
+		
 
 def title_style(title):
     clear()
